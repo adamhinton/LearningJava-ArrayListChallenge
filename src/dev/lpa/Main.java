@@ -1,23 +1,53 @@
 package dev.lpa;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
 
-        while(true){
+        ArrayList<String> groceryList = new ArrayList<>();
 
+        while(true){
 
 
             Scanner scanner = new Scanner(System.in);
 
             System.out.println("Enter 0 to exit, 1 to add items, 2 to remove items");
             int input = scanner.nextInt();
+            scanner.nextLine();
 
             if(input == 0){
+                System.out.println(groceryList.toString());
                 break;
             }
 
+            if (input ==1){
+                System.out.println("Enter items to add, separated by commas");
+                String[] addedItems = scanner.nextLine().split(",");
+
+                for (String item : addedItems) {
+                    item = item.trim();
+                    if (!groceryList.contains(item)) {
+                        groceryList.add(item);
+                    }
+                }
+
+                System.out.println(groceryList.toString());
+            }
+
+            if (input ==2){
+
+                System.out.println("Enter items to delete, separated by commas");
+                String[] deletedItems = scanner.nextLine().split(",");
+
+                for (String item : deletedItems) {
+                        item = item.trim();
+                        groceryList.remove(item);
+                }
+
+                System.out.println(groceryList.toString());
+            }
 
 
         }
